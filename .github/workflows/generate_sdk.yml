@@ -18,7 +18,7 @@ jobs:
     name: Generate & build SDK
     runs-on: ubuntu-latest
     env:
-      BRANCH_NAME: v${{ inputs.immich-version }}
+      BRANCH_NAME: immich-v${{ inputs.immich-version }}
 
     steps:
       - uses: actions/checkout@v4
@@ -41,12 +41,12 @@ jobs:
       - name: Move generated files
         run: find . -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "python-client" -exec rm -rf {} + && mv python-client/{*,.*} . && rmdir python-client
 
-      - name: Create commit & tag
+      - name: Create commit
         run: |
           git config user.email "action@github.com"
           git config user.name "Github Action"
           git add -A
-          git commit -m "Generated immich-python-sdk for v${{ inputs.immich-version }}"
+          git commit -m "Generated immich-python-sdk for immich v${{ inputs.immich-version }}"
 
       - name: Setup Python
         uses: actions/setup-python@v5
