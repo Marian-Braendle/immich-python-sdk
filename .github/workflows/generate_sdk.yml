@@ -33,7 +33,7 @@ jobs:
         generator: python
         openapi-url: ${{ inputs.immich-api-url }}
         config-file: openapi_config.json
-        command-args: "--additional-properties=packageVersion=${{ inputs.immich-version }},packageUrl=${{ github.repositoryUrl }}"
+        command-args: "--additional-properties=packageVersion=${{ inputs.immich-version }},packageUrl=${{ github.server_url }}/${{ github.repository }}/tree/${BRANCH_NAME}"
 
     - name: Move generated files
       run: find . -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "python-client" -exec rm -rf {} + && mv python-client/{*,.*} . && rmdir python-client
