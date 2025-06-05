@@ -65,7 +65,7 @@ jobs:
         path: dist/
 
     - name: Push branch
-      run: git push -u origin --force-with-lease ${BRANCH_NAME}
+      run: git push -u origin --force ${BRANCH_NAME}
 
   publish-to-pypi:
     name: Publish to PyPI
