@@ -1,0 +1,9 @@
+{
+    "packageName": "immich_python_sdk",
+    "protectName": "immich-python-sdk",
+    "poetry1": true,
+    "gitHost": "github.com",
+    "gitUserId": "Marian-Braendle",
+    "gitRepoId": "immich-python-sdk",
+    "licenseInfo": "MIT"
+}
