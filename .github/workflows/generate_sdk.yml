@@ -33,6 +33,7 @@ jobs:
         generator: python
         openapi-url: ${{ inputs.immich-api-url }}
         config-file: openapi_config.json
+        template-dir: templates
         command-args: "--additional-properties=packageVersion=${{ inputs.immich-version }},packageUrl=${{ github.server_url }}/${{ github.repository }}/tree/${BRANCH_NAME}"
 
     - name: Move generated files
