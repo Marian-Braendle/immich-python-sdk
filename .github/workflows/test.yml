@@ -10,6 +10,7 @@ jobs:
     name: Geberate build and deploy SDK
     strategy:
       matrix:
+        immich-version: [1.134.0]
         include:
         - generator-lib: urllib3
           project-name: immich-python-sdk
