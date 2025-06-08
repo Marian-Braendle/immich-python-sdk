@@ -16,7 +16,7 @@ jobs:
           project-name: immich-python-sdk
           package-name: immich_python_sdk
 
-    uses: Marian-Braendle/immich-python-sdk/.github/workflows/_generate_build_deploy.yml@main
+    uses: ./.github/workflows/_generate_build_deploy.yml
     with:
       immich-version: ${{ matrix.immich-version }}
       immich-api-url: ${{ matrix.immich-api-url }}
