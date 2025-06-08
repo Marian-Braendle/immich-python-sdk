@@ -1,0 +1,26 @@
+name: Test workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-build-deploy:
+    name: Geberate build and deploy SDK
+    strategy:
+      matrix:
+        include:
+        - immich-version: 1.134.0
+          immich-api-url: https://github.com/immich-app/immich/raw/refs/tags/v1.134.0/open-api/immich-openapi-specs.json
+          generator-lib: urllib3
+          branch-name: immich-v1.134.0
+          project-name: immich-python-sdk
+          package-name: immich_python_sdk
+
+    uses: ${{ github.repository }}/.github/workflows/_generate_build_deploy.yml@main
+    with:
+      immich-version: ${{ matrix.immich-version }}
+      immich-api-url: ${{ matrix.immich-api-url }}
+      generator-lib: ${{ matrix.generator-lib }}
+      branch-name: ${{ matrix.branch-name }}
+      project-name: ${{ matrix.project-name }}
+      package-name: ${{ matrix.package-name }}

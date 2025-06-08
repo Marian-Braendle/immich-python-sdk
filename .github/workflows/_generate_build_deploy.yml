@@ -1,0 +1,80 @@
+on:
+  workflow_call:
+    inputs:
+      immich-version:
+        description: 'Immich version'
+        type: string
+        required: true
+      immich-api-url:
+        description: 'URL to immich openapi specification'
+        type: string
+        required: true
+      generator-lib:
+        description: 'Python library to be used for generator'
+        type: string
+        required: true
+      branch-name:
+        description: 'Branch name'
+        type: string
+        required: true
+      project-name:
+        description: 'Python project name'
+        type: string
+        required: true
+      package-name:
+        description: 'Python package name'
+        type: string
+        required: true
+    secrets:
+      IMMICH_PYTHON_SDK_TOKEN:
+        required: true
+
+
+jobs:
+  generate:
+    name: Generate SDK
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.IMMICH_PYTHON_SDK_TOKEN }}
+
+    - name: Create branch
+      run: git checkout --orphan ${{ inputs.branch-name }}
+
+    - name: Generate Python SDK
+      uses: openapi-generators/openapitools-generator-action@v1
+      with:
+        generator: python
+        openapi-url: ${{ inputs.immich-api-url }}
+        config-file: openapi_config.json
+        template-dir: templates
+        command-args: "--additional-properties=\
+          projectName=${{ inputs.project-name }},\
+          packageName=${{ inputs.package-name }},\
+          packageVersion=${{ inputs.immich-version }},\
+          packageUrl=${{ github.server_url }}/${{ github.repository }}/tree/${{ inputs.branch-name }},\
+          library=${{ inputs.generator-lib }}\"
+
+    - name: Move generated files
+      run: find . -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "python-client" -exec rm -rf {} + && mv python-client/{*,.*} . && rmdir python-client
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.9
+
+    - name: Install python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install poetry
+
+    - name: Build SDK
+      run: poetry build
+
+    - name: Upload distributions
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-dists-${{ inputs.branch-name }}
+        path: dist/
