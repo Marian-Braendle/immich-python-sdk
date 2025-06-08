@@ -20,6 +20,7 @@ jobs:
 
     uses: ./.github/workflows/_generate_build_deploy.yml
     with:
+      TOKEN: ${{ secrets.IMMICH_PYTHON_SDK_TOKEN }}
       immich-version: ${{ matrix.immich-version }}
       immich-api-url: ${{ matrix.immich-api-url }}
       generator-lib: ${{ matrix.generator-lib }}
