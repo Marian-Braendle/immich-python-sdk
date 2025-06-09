@@ -37,3 +37,5 @@ jobs:
       package-name: ${{ matrix.package-name }}
     secrets:
       token: ${{ secrets.IMMICH_PYTHON_SDK_TOKEN }}
+    permissions:
+      id-token: write
