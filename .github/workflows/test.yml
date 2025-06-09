@@ -7,7 +7,8 @@ on:
 
 jobs:
   generate-build-deploy:
-    name: Geberate build and deploy SDK
+    name: Generate build and deploy SDK
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         immich-version: [1.134.0]
@@ -17,20 +18,20 @@ jobs:
           project-name: immich-python-sdk
           package-name: immich_python_sdk
         - generator-lib: asyncio
-          lib-suffix: asyncio
           project-name: immich-python-sdk-asyncio
           package-name: immich_python_sdk_asyncio
 
         - immich-version: 1.134.0
           immich-api-url: https://github.com/immich-app/immich/raw/refs/tags/v1.134.0/open-api/immich-openapi-specs.json
 
-    uses: ./.github/workflows/_generate_build_deploy.yml
-    with:
-      immich-version: ${{ matrix.immich-version }}
-      immich-api-url: ${{ matrix.immich-api-url }}
-      generator-lib: ${{ matrix.generator-lib }}
-      branch-name: v${{ matrix.immich-version }}_${{ matrix.generator-lib }}
-      project-name: ${{ matrix.project-name }}
-      package-name: ${{ matrix.package-name }}
-    secrets:
-      token: ${{ secrets.IMMICH_PYTHON_SDK_TOKEN }}
+    steps:
+      - uses: ./.github/workflows/_generate_build_deploy.yml
+        with:
+          immich-version: ${{ matrix.immich-version }}
+          immich-api-url: ${{ matrix.immich-api-url }}
+          generator-lib: ${{ matrix.generator-lib }}
+          branch-name: v${{ matrix.immich-version }}_${{ matrix.generator-lib }}
+          project-name: ${{ matrix.project-name }}
+          package-name: ${{ matrix.package-name }}
+        secrets:
+          token: ${{ secrets.IMMICH_PYTHON_SDK_TOKEN }}
