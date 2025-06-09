@@ -23,6 +23,8 @@ jobs:
 
         - immich-version: 1.134.0
           immich-api-url: https://github.com/immich-app/immich/raw/refs/tags/v1.134.0/open-api/immich-openapi-specs.json
+        - immich-version: 1.133.1
+          immich-api-url: https://github.com/immich-app/immich/raw/refs/tags/v1.133.1/open-api/immich-openapi-specs.json
 
     steps:
       - uses: ./.github/workflows/_generate_build_deploy.yml
