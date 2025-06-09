@@ -36,6 +36,7 @@ jobs:
     outputs:
       branch_exists: ${{ steps.check.outputs.branch_exists }}
     steps:
+      - uses: actions/checkout@v4
       - name: Check if branch exists
         id: check
         run: |
