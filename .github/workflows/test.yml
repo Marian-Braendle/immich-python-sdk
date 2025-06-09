@@ -33,5 +33,4 @@ jobs:
           branch-name: v${{ matrix.immich-version }}_${{ matrix.generator-lib }}
           project-name: ${{ matrix.project-name }}
           package-name: ${{ matrix.package-name }}
-        secrets:
           token: ${{ secrets.IMMICH_PYTHON_SDK_TOKEN }}

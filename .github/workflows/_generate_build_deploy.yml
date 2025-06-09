@@ -13,6 +13,7 @@ on:
         description: 'Python library to be used for generator'
         type: string
         required: true
+        default: urllib3
       branch-name:
         description: 'Branch name'
         type: string
@@ -25,9 +26,10 @@ on:
         description: 'Python package name'
         type: string
         required: true
-    secrets:
       token:
+        type: string
         required: true
+        default: ${{ github.token }}
 
 
 jobs:
@@ -38,7 +40,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        token: ${{ secrets.TOKEN }}
+        token: ${{ inputs.token }}
 
     - name: Create branch
       run: git checkout --orphan ${{ inputs.branch-name }}
