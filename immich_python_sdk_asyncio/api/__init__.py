@@ -1,0 +1,36 @@
+# flake8: noqa
+
+# import apis into api package
+from immich_python_sdk_asyncio.api.api_keys_api import APIKeysApi
+from immich_python_sdk_asyncio.api.activities_api import ActivitiesApi
+from immich_python_sdk_asyncio.api.albums_api import AlbumsApi
+from immich_python_sdk_asyncio.api.assets_api import AssetsApi
+from immich_python_sdk_asyncio.api.authentication_api import AuthenticationApi
+from immich_python_sdk_asyncio.api.deprecated_api import DeprecatedApi
+from immich_python_sdk_asyncio.api.download_api import DownloadApi
+from immich_python_sdk_asyncio.api.duplicates_api import DuplicatesApi
+from immich_python_sdk_asyncio.api.faces_api import FacesApi
+from immich_python_sdk_asyncio.api.jobs_api import JobsApi
+from immich_python_sdk_asyncio.api.libraries_api import LibrariesApi
+from immich_python_sdk_asyncio.api.map_api import MapApi
+from immich_python_sdk_asyncio.api.memories_api import MemoriesApi
+from immich_python_sdk_asyncio.api.notifications_api import NotificationsApi
+from immich_python_sdk_asyncio.api.notifications_admin_api import NotificationsAdminApi
+from immich_python_sdk_asyncio.api.o_auth_api import OAuthApi
+from immich_python_sdk_asyncio.api.partners_api import PartnersApi
+from immich_python_sdk_asyncio.api.people_api import PeopleApi
+from immich_python_sdk_asyncio.api.search_api import SearchApi
+from immich_python_sdk_asyncio.api.server_api import ServerApi
+from immich_python_sdk_asyncio.api.sessions_api import SessionsApi
+from immich_python_sdk_asyncio.api.shared_links_api import SharedLinksApi
+from immich_python_sdk_asyncio.api.stacks_api import StacksApi
+from immich_python_sdk_asyncio.api.sync_api import SyncApi
+from immich_python_sdk_asyncio.api.system_config_api import SystemConfigApi
+from immich_python_sdk_asyncio.api.system_metadata_api import SystemMetadataApi
+from immich_python_sdk_asyncio.api.tags_api import TagsApi
+from immich_python_sdk_asyncio.api.timeline_api import TimelineApi
+from immich_python_sdk_asyncio.api.trash_api import TrashApi
+from immich_python_sdk_asyncio.api.users_api import UsersApi
+from immich_python_sdk_asyncio.api.users_admin_api import UsersAdminApi
+from immich_python_sdk_asyncio.api.view_api import ViewApi
+
