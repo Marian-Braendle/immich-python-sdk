@@ -77,6 +77,13 @@ jobs:
     - name: Move generated files
       run: find . -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "python-client" -exec rm -rf {} + && mv python-client/{*,.*} . && rmdir python-client
 
+    - name: Create commit
+      run: |
+        git config user.email "action@github.com"
+        git config user.name "Github Action"
+        git add -A
+        git commit -m "Generated immich SDK for ${{ inputs.branch-name }}"
+
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
