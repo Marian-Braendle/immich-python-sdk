@@ -65,14 +65,18 @@ jobs:
       with:
         generator: python
         openapi-url: ${{ inputs.immich-api-url }}
-        config-file: openapi_config.json
         template-dir: templates
         command-args: "--additional-properties=\
           projectName=${{ inputs.project-name }},\
           packageName=${{ inputs.package-name }},\
           packageVersion=${{ inputs.immich-version }},\
           packageUrl=${{ github.server_url }}/${{ github.repository }}/tree/${{ inputs.branch-name }},\
-          library=${{ inputs.generator-lib }}"
+          library=${{ inputs.generator-lib }},\
+          gitHost=${{ github.server_url	 }},\
+          gitUserId=${{ github.repository_owner	 }},\
+          gitRepoId=${GITHUB_REPOSITORY#*/},\
+          licenceInfo=MIT,\
+          poetry1=true"
 
     - name: Move generated files
       run: find . -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "python-client" -exec rm -rf {} + && mv python-client/{*,.*} . && rmdir python-client
