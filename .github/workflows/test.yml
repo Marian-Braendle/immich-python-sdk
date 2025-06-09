@@ -10,7 +10,7 @@ jobs:
     name: Generate build and deploy SDK
     strategy:
       matrix:
-        immich-version: [1.133.1, 1.134.0]
+        immich-version: [1.133.0, 1.133.1, 1.134.0]
         generator-lib: [urllib3, asyncio]
         include:
         - generator-lib: urllib3
@@ -24,6 +24,8 @@ jobs:
           immich-api-url: https://github.com/immich-app/immich/raw/refs/tags/v1.134.0/open-api/immich-openapi-specs.json
         - immich-version: 1.133.1
           immich-api-url: https://github.com/immich-app/immich/raw/refs/tags/v1.133.1/open-api/immich-openapi-specs.json
+        - immich-version: 1.133.0
+          immich-api-url: https://github.com/immich-app/immich/raw/refs/tags/v1.133.0/open-api/immich-openapi-specs.json
 
     uses: ./.github/workflows/_generate_build_deploy.yml
     with:
