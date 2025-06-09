@@ -95,3 +95,6 @@ jobs:
       with:
         name: release-dists-${{ inputs.branch-name }}
         path: dist/
+
+    - name: Push branch
+      run: git push -u origin ${{ inputs.branch-name }}
