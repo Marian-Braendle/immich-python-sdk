@@ -13,7 +13,6 @@ on:
         description: 'Python library to be used for generator'
         type: string
         required: true
-        default: urllib3
       branch-name:
         description: 'Branch name'
         type: string
@@ -26,21 +25,36 @@ on:
         description: 'Python package name'
         type: string
         required: true
+    secrets:
       token:
-        type: string
         required: true
-        default: ${{ github.token }}
 
 
 jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    outputs:
+      branch_exists: ${{ steps.check.outputs.branch_exists }}
+    steps:
+      - name: Check if branch exists
+        id: check
+        run: |
+          if git ls-remote --exit-code --heads origin refs/heads/${{ inputs.branch-name }} 2>&1>/dev/null; then
+            echo "branch_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "branch_exists=false" >> $GITHUB_OUTPUT
+          fi
+
   generate:
-    name: Generate SDK
+    needs: check-branch
+    if: needs.check-branch.outputs.branch_exists != 'true'
+    name: Generate SDK (if branch not already exists)
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
       with:
-        token: ${{ inputs.token }}
+        token: ${{ secrets.token }}
 
     - name: Create branch
       run: git checkout --orphan ${{ inputs.branch-name }}

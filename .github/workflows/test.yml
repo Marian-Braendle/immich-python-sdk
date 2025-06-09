@@ -8,7 +8,6 @@ on:
 jobs:
   generate-build-deploy:
     name: Generate build and deploy SDK
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         immich-version: [1.133.1, 1.134.0]
@@ -26,13 +25,13 @@ jobs:
         - immich-version: 1.133.1
           immich-api-url: https://github.com/immich-app/immich/raw/refs/tags/v1.133.1/open-api/immich-openapi-specs.json
 
-    steps:
-      - uses: ./.github/workflows/_generate_build_deploy.yml
-        with:
-          immich-version: ${{ matrix.immich-version }}
-          immich-api-url: ${{ matrix.immich-api-url }}
-          generator-lib: ${{ matrix.generator-lib }}
-          branch-name: v${{ matrix.immich-version }}_${{ matrix.generator-lib }}
-          project-name: ${{ matrix.project-name }}
-          package-name: ${{ matrix.package-name }}
-          token: ${{ secrets.IMMICH_PYTHON_SDK_TOKEN }}
+    uses: ./.github/workflows/_generate_build_deploy.yml
+    with:
+      immich-version: ${{ matrix.immich-version }}
+      immich-api-url: ${{ matrix.immich-api-url }}
+      generator-lib: ${{ matrix.generator-lib }}
+      branch-name: v${{ matrix.immich-version }}_${{ matrix.generator-lib }}
+      project-name: ${{ matrix.project-name }}
+      package-name: ${{ matrix.package-name }}
+    secrets:
+      token: ${{ secrets.IMMICH_PYTHON_SDK_TOKEN }}
