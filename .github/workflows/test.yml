@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        immich-version: [1.134.0]
+        immich-version: [1.133.1, 1.134.0]
         generator-lib: [urllib3, asyncio]
         include:
         - generator-lib: urllib3
