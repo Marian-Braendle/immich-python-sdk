@@ -66,6 +66,7 @@ jobs:
         generator: python
         openapi-url: ${{ inputs.immich-api-url }}
         template-dir: templates
+        env: 
         command-args: "--additional-properties=\
           projectName=${{ inputs.project-name }},\
           packageName=${{ inputs.package-name }},\
@@ -73,8 +74,8 @@ jobs:
           packageUrl=${{ github.server_url }}/${{ github.repository }}/tree/${{ inputs.branch-name }},\
           library=${{ inputs.generator-lib }},\
           gitHost=${{ github.server_url	 }},\
-          gitUserId=${{ github.repository_owner	 }},\
-          gitRepoId=${GITHUB_REPOSITORY#*/},\
+          gitUserId=${{ github.repository_owner }},\
+          gitRepoId=immich-python-sdk,\
           licenceInfo=MIT,\
           poetry1=true"
 
