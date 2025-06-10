@@ -1,0 +1,35 @@
+# TagResponseDto
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**color** | **str** |  | [optional] 
+**created_at** | **datetime** |  | 
+**id** | **str** |  | 
+**name** | **str** |  | 
+**parent_id** | **str** |  | [optional] 
+**updated_at** | **datetime** |  | 
+**value** | **str** |  | 
+
+## Example
+
+```python
+from immich_python_sdk.models.tag_response_dto import TagResponseDto
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of TagResponseDto from a JSON string
+tag_response_dto_instance = TagResponseDto.from_json(json)
+# print the JSON string representation of the object
+print(TagResponseDto.to_json())
+
+# convert the object into a dict
+tag_response_dto_dict = tag_response_dto_instance.to_dict()
+# create an instance of TagResponseDto from a dict
+tag_response_dto_from_dict = TagResponseDto.from_dict(tag_response_dto_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
