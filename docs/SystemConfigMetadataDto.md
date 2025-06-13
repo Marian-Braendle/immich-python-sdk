@@ -1,0 +1,29 @@
+# SystemConfigMetadataDto
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**faces** | [**SystemConfigFacesDto**](SystemConfigFacesDto.md) |  | 
+
+## Example
+
+```python
+from immich_python_sdk.models.system_config_metadata_dto import SystemConfigMetadataDto
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of SystemConfigMetadataDto from a JSON string
+system_config_metadata_dto_instance = SystemConfigMetadataDto.from_json(json)
+# print the JSON string representation of the object
+print(SystemConfigMetadataDto.to_json())
+
+# convert the object into a dict
+system_config_metadata_dto_dict = system_config_metadata_dto_instance.to_dict()
+# create an instance of SystemConfigMetadataDto from a dict
+system_config_metadata_dto_from_dict = SystemConfigMetadataDto.from_dict(system_config_metadata_dto_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
